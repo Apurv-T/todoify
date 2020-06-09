@@ -1,0 +1,4 @@
+#Tue Jun 09 06:26:37 ADT 2020
+base.0=/Users/apurvtripathi/Desktop/AcademicCourses/Java Projects/flutter_apps/todoify_flutter/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
