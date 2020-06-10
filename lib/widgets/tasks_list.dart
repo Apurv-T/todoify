@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todoifyflutter/models/task_data.dart';
 import 'package:todoifyflutter/widgets/task_tile.dart';
-import 'package:todoifyflutter/models/task.dart';
+import 'package:provider/provider.dart';
 
 class TasksList extends StatefulWidget {
   @override
@@ -8,20 +9,24 @@ class TasksList extends StatefulWidget {
 }
 
 class _TasksListState extends State<TasksList> {
-  List<Task> tasks = [
-    Task(title: "milk"),
-    Task(title: "sugar"),
-    Task(title: "salt"),
-  ];
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        TaskTile(),
-        TaskTile(),
-        TaskTile(),
-        TaskTile(),
-      ],
+    return Consumer<TaskData>(
+      builder: (context, TaskData, child) {
+        return ListView.builder(
+            itemBuilder: (context, index) {
+              return TaskTile(
+                taskTitle: TaskData.tasks[index].title,
+                isChecked: TaskData.tasks[index].isDone,
+                checkBoxToggle: (newValue) {
+                  setState(() {
+                    TaskData.tasks[index].toggleDone();
+                  });
+                },
+              );
+            },
+            itemCount: TaskData.tasks.length);
+      },
     );
   }
 }
